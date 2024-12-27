@@ -1,0 +1,284 @@
+* {
+    border-radius: 5px;
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: black;
+    margin: 0px;
+    padding: 0px;
+}
+
+main {
+    display: flex;
+    align-items: flex-start;
+}
+
+div {
+    background-color: rgb(17, 17, 17);
+}
+
+img {
+    background-color: rgba(255, 0, 0, 0);
+}
+
+ul {
+    list-style-type: none;
+    display: inline;
+    background-color: rgba(255, 0, 0, 0);
+}
+
+li {
+    background-color: rgba(255, 0, 0, 0);
+}
+
+button {}
+
+
+
+.whiteButton {
+    background-color: rgb(255, 255, 255);
+    color: black;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-weight: bold;
+    border: 0px;
+}
+
+.greyButton {
+    background-color: rgba(255, 0, 0, 0);
+    color: grey;
+    border: 0px solid white;
+    font-weight: bold;
+}
+
+.buttonWithBorder {
+    border: 1px solid white;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+.left {
+    width: 20vw;
+    background-color: rgba(255, 0, 0, 0);
+    height: 100vh;
+}
+
+.left .upper {
+    padding: 15px;
+    margin: 5px;
+    height: 10%;
+}
+
+.left .upprt div {
+    padding-top: 5px;
+}
+
+.left .upper .icon_spotify {
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+}
+
+.left .upper .icon_home,
+.icon_search {
+    background-color: rgba(255, 0, 0, 0);
+    display: flex;
+    align-items: center;
+}
+
+.left .upper .icon_spotify img {
+    padding-right: 2px;
+}
+
+.left .upper .icon_home img {
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+.left .upper .icon_search img {
+    padding-right: 10px;
+    padding-top: 5px;
+}
+
+.left .lower {
+    padding: 5px;
+    margin: 5px;
+    margin-bottom: 5px;
+    background-color: rgb(17, 17, 17);
+    height: 90%;
+}
+
+.left .lower span {
+    background-color: rgba(255, 0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.left .lower span button {
+    background-color: rgba(255, 0, 0, 0);
+    border: 0px;
+}
+
+.left .lower span span span {
+    padding: 5px;
+}
+
+.left .lower .playlist,
+.left .lower .podcast {
+    background-color: rgb(36, 36, 36);
+    padding: 10px;
+    margin: 5px;
+}
+
+.left .lower .playlist span:nth-child(2),
+.left .lower .podcast span:nth-child(2) {
+    background-color: rgba(255, 0, 0, 0);
+    font-size: x-small;
+}
+
+.left .lower .bottom {
+    
+}
+
+.left .lower .bottom .legal {
+    background-color: rgba(255, 0, 0, 0);
+    margin: 5px;
+}
+
+
+.right {
+    width: 80vw;
+    background-color: rgb(17, 17, 17);
+    /* background-color: red; */
+    margin: 5px;
+    padding: 5px;
+}
+
+.right .top {
+    background-color: rgba(255, 0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    margin: 5px;
+}
+
+.right .top .rightButton .greyButton {
+    margin: 5px;
+}
+
+.right .top .rightButton .whiteButton {
+    margin: 5px;
+}
+
+.right .middle {
+    background-color: rgb(34, 34, 34);
+}
+
+.right .middle .spotify_playlists_Show_all {
+    background-color: rgba(255, 0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.spotify_playlists_Show_all span:first-child {
+    font-size: large;
+    font-weight: bold;
+    background-color: rgba(255, 0, 0, 0);
+}
+
+.right .middle .middle {
+    background-color: rgba(255, 0, 0, 0);
+    display: flex;
+}
+
+.right .middle .middle .card {
+    background-color: rgba(45, 45, 45, 0);
+    width: 123px;
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.right .middle .middle .card img {
+
+}
+
+.right .middle .middle .card span {
+    font-weight: normal;
+    font-size: x-small;
+    background-color: rgba(255, 0, 0, 0);
+}
+
+.right .middle .middle .card p{
+    background-color: rgba(255, 0, 0, 0);
+    font-size: xx-small;
+}
+
+.right .middle .bottom{
+    background-color: rgba(255, 0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+}
+
+.right .middle .bottom .left_list{
+    display: flex;
+    background-color: rgba(255, 0, 0, 0);
+    margin: 10px;
+    padding: 10px;
+}
+
+.right .middle .bottom .left_list div{
+    margin: 10px;
+    padding: 10px;
+    background-color: rgba(255, 0, 0, 0);
+}
+
+.right .middle .bottom .left_list div h4{
+    background-color: rgba(255, 0, 0, 0);
+}
+
+.right .middle .bottom .left_list div ul li{
+    color: rgb(176, 176, 176);
+}
+
+.right .middle .bottom .right_icons{
+    width: 20%;
+    background-color: rgba(255, 0, 0, 0);
+    display: flex;
+    align-items: baseline;
+    justify-content: end;
+    margin: 10px;
+}
+
+.right .middle .bottom .right_icons button{
+    border: 0px solid white;
+    border-radius: 45px;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    margin: 5px;
+}
+
+.right .middle .bottom .right_icons button img{
+    height: 23px;
+}
+
+.legal div {
+    font-size: x-small;
+    background-color: rgba(255, 0, 0, 0);
+    color: grey;
+    padding: 0px;
+    margin: 0px;
+}
+
+.legal_Privacy_policy_cookies_abouts {
+    display: flex;
+    justify-content: space-between;
+}
+
+.legal_Privacy_policy_cookies_abouts div {
+    margin: 1px;
+}
