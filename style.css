@@ -143,7 +143,7 @@ button {}
     font-size: x-small;
 }
 
-.left .lower .playlist_podcast_legal{
+.left .lower .playlist_podcast_legal {
     padding: 5px;
     background-color: rgba(255, 0, 0, 0);
     display: flex;
@@ -158,9 +158,27 @@ button {}
     margin: 5px;
 }
 
+.legal div {
+    font-size: x-small;
+    background-color: rgba(255, 0, 0, 0);
+    color: grey;
+    padding: 0px;
+    margin: 0px;
+}
+
+.legal_Privacy_policy_cookies_abouts {
+    display: flex;
+    justify-content: space-between;
+}
+
+.legal_Privacy_policy_cookies_abouts div {
+    margin: 1px;
+}
 
 .right {
     width: 80vw;
+    height: 98vh;
+    box-sizing: border-box;
     background-color: rgb(17, 17, 17);
     /* background-color: red; */
     margin: 5px;
@@ -174,6 +192,7 @@ button {}
     align-items: center;
     padding: 5px;
     margin: 5px;
+    height: 5%;
 }
 
 .right .top .rightButton .greyButton {
@@ -215,9 +234,7 @@ button {}
     flex-direction: column;
 }
 
-.right .middle .middle .card img {
-
-}
+.right .middle .middle .card img {}
 
 .right .middle .middle .card span {
     font-weight: normal;
@@ -225,39 +242,39 @@ button {}
     background-color: rgba(255, 0, 0, 0);
 }
 
-.right .middle .middle .card p{
+.right .middle .middle .card p {
     background-color: rgba(255, 0, 0, 0);
     font-size: xx-small;
 }
 
-.right .middle .bottom{
+.right .middle .bottom {
     background-color: rgba(255, 0, 0, 0);
     display: flex;
     justify-content: space-between;
 }
 
-.right .middle .bottom .left_list{
+.right .middle .bottom .left_list {
     display: flex;
     background-color: rgba(255, 0, 0, 0);
     margin: 10px;
     padding: 10px;
 }
 
-.right .middle .bottom .left_list div{
+.right .middle .bottom .left_list div {
     margin: 10px;
     padding: 10px;
     background-color: rgba(255, 0, 0, 0);
 }
 
-.right .middle .bottom .left_list div h4{
+.right .middle .bottom .left_list div h4 {
     background-color: rgba(255, 0, 0, 0);
 }
 
-.right .middle .bottom .left_list div ul li{
+.right .middle .bottom .left_list div ul li {
     color: rgb(176, 176, 176);
 }
 
-.right .middle .bottom .right_icons{
+.right .middle .bottom .right_icons {
     width: 20%;
     background-color: rgba(255, 0, 0, 0);
     display: flex;
@@ -266,7 +283,7 @@ button {}
     margin: 10px;
 }
 
-.right .middle .bottom .right_icons button{
+.right .middle .bottom .right_icons button {
     border: 0px solid white;
     border-radius: 45px;
     padding: 10px;
@@ -274,23 +291,19 @@ button {}
     margin: 5px;
 }
 
-.right .middle .bottom .right_icons button img{
+.right .middle .bottom .right_icons button img {
     height: 23px;
 }
 
-.legal div {
-    font-size: x-small;
+.right .player{
     background-color: rgba(255, 0, 0, 0);
-    color: grey;
-    padding: 0px;
-    margin: 0px;
-}
-
-.legal_Privacy_policy_cookies_abouts {
-    display: flex;
-    justify-content: space-between;
-}
-
-.legal_Privacy_policy_cookies_abouts div {
+    height: 30%;
+    box-sizing: border-box;
+    border: 1px solid white;
     margin: 1px;
+    padding: 5px;
+}
+
+.right .bottom span{
+    background-color: rgba(255, 0, 0, 0);
 }
