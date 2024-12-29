@@ -120,7 +120,7 @@ button {}
     justify-content: space-between;
 }
 
-.left .lower .your_lib_bar{
+.left .lower .your_lib_bar {
     background-color: rgba(255, 0, 0, 0);
     display: flex;
     align-items: center;
@@ -128,7 +128,7 @@ button {}
     margin: 5px;
 }
 
-.left .lower .your_lib_bar span{
+.left .lower .your_lib_bar span {
     background-color: rgba(255, 0, 0, 0);
     display: flex;
     align-items: center;
@@ -157,12 +157,15 @@ button {}
     font-size: x-small;
 }
 
-.leftSongList{
+.leftSongList {
     background-color: rgba(255, 0, 0, 0);
     padding: 5px;
+    overflow: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgb(56, 56, 56) rgba(255, 0, 0, 0);
 }
 
-.leftSongList ul li{
+.leftSongList ul li {
     background-color: rgba(255, 0, 0, 0);
     border: 1px solid greenyellow;
     padding: 5px 5px;
@@ -172,23 +175,39 @@ button {}
     justify-content: space-between;
 }
 
-.leftSongList ul li .leftSongListItemsInfo .songName,
-.leftSongList ul li .leftSongListItemsInfo .artistName{
+.leftSongList ul li .leftSongListItemsInfo {
     background-color: rgba(255, 0, 0, 0);
-    overflow: hidden;
-    max-width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
 }
 
-.leftSongList li img:first-child{
+.leftSongList ul li .leftSongListItemsInfo .songName {
+    background-color: rgba(255, 0, 0, 0);
+    text-overflow: clip;
+    width: 120px;
+    font-size: small;
+}
+
+.leftSongList ul li .leftSongListItemsInfo .artistName {
+    background-color: rgba(255, 0, 0, 0);
+    font-size: x-small;
+    font-style: italic;
+}
+
+.leftSongList li img:first-child {
     height: 50px;
 }
 
-.leftSongList li img:last-child{
+.leftSongList li img:last-child {
     height: 30px;
 }
 
-.leftSongList li div{
+.leftSongList li div {
     background-color: rgba(255, 0, 0, 0);
+    display: flex;
+    align-items: center;
+    gap: 3px;
 }
 
 .left .lower .bottom .legal {
@@ -334,20 +353,55 @@ button {}
     height: 23px;
 }
 
-.playButtons{
-    padding: 5px;
-}
-
-.right .player{
+.right .player {
     background-color: rgb(31, 207, 0);
     box-sizing: border-box;
     margin: 5px;
-    padding: 5px;
+    padding: 10px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    gap: 5px;
+    gap: 10px;
 }
 
-.right .bottom span{
+/* Player Seekbar Section */
+
+.player .seekbarContainer{
+    display: flex;
+    position: relative;
+    align-items: center;
+}
+
+.player .seekbarContainer .seekbar{
+    height: 5px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+}
+
+.player .seekbarContainer .circle{
+    height: 10px;
+    width: 10px;
+    border-radius: 50px;
+    background-color: rgb(0, 0, 0);
+    position: absolute;
+    left: 0%;
+    transition: left 0.5s;
+}
+
+/* Player Button Section */
+
+.player .playButtons{
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    padding: 5px 5px;
+}
+
+.player .playButtons button{
+    padding: 5px;
+}
+
+.right .bottom span {
     background-color: rgba(255, 0, 0, 0);
 }

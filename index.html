@@ -48,7 +48,18 @@
                         <!--  Song list -->
                         <div class="leftSongList">
                             <ul>
-                                <!--  -->
+
+                                <!-- <li>
+                                    <div>
+                                        <img src="assets/icons/music-dvd.svg" alt="" height="50px">
+                                        <div class="leftSongListItemsInfo">
+                                            <span class="songName">${songName}</span>
+                                            <span class="artistName">${Artistname}</span>
+                                        </div>
+                                    </div>
+                                    <img src="assets/icons/play-button.svg" alt="" height="30px">
+                                </li> -->
+
                             </ul>
                         </div>
 
@@ -163,9 +174,15 @@
             </div>
             <div>
                 <div class="player">
-                    <button class="playButtons">&lt;</button>
-                    <button class="playButtons">Play</button>
-                    <button class="playButtons">></button>
+                    <div class="seekbarContainer">
+                        <div class="seekbar"></div>
+                        <div class="circle"></div>
+                    </div>
+                    <div class="playButtons">
+                        <button>&lt;</button>
+                        <button>Play</button>
+                        <button>></button>
+                    </div>
                 </div>
                 <div class="bottom">
                     <span>@ 2023 Spotify</span>

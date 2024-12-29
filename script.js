@@ -33,16 +33,18 @@ function songLinkToText(link) {
 }
 
 function leftSongList_songAdder(className, array) {
-    let Artistname = "Umar"
+    let Artistname = "Kohei Tanaka"
     let one = document.querySelector(className)
     let songUL = one.querySelector("ul").innerHTML
     for (const songs of array) {
         let songName = songLinkToText(songs)
         let tempHTML = `<li>
-                                    <img src="assets/icons/music-dvd.svg" alt="" height="50px">
-                                    <div class="leftSongListItemsInfo"> 
-                                        <span class="songName">${songName}</span>
-                                        <span class="artistName">${Artistname}</span>
+                                    <div>
+                                        <img src="assets/icons/music-dvd.svg" alt="" height="50px">
+                                        <div class="leftSongListItemsInfo">
+                                            <span class="songName">${songName}</span>
+                                            <span class="artistName">${Artistname}</span>
+                                        </div>
                                     </div>
                                     <img src="assets/icons/play-button.svg" alt="" height="30px">
                                 </li>`
@@ -50,15 +52,13 @@ function leftSongList_songAdder(className, array) {
     }
 
     one.querySelector("ul").innerHTML = songUL
-
-    console.log(songUL);
-
 }
 
 async function main() {
     let songLinks = await songFetcherFromLocalDir("http://127.0.0.1:3000/assets/songs/")
     leftSongList_songAdder(".leftSongList", songLinks)
-
 }
 
 main().then(r => {})
+
+// console.log(songLinkToText("https://github.com/Maus-313/Spotify-Clone/tree/5fc39f490f2e9dff1f110e941bbb73c0f60c24de/assets/songs"))
