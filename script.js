@@ -41,7 +41,7 @@ function leftSongList_songAdder(className, array) {
         let tempHTML = `<li>
                                     <div>
                                         <img src="assets/icons/music-dvd.svg" alt="" height="50px">
-                                        <div class="leftSongListItemsInfo">
+                                        <div class="leftSongListItemsInfo" data-music-url = "${songs}">
                                             <span class="songName">${songName}</span>
                                             <span class="artistName">${Artistname}</span>
                                         </div>
@@ -54,11 +54,32 @@ function leftSongList_songAdder(className, array) {
     one.querySelector("ul").innerHTML = songUL
 }
 
+let music
+
+function playMusic(link) {
+    if(music == undefined){
+        music = new Audio(link)
+        music.play();
+    }else{
+        music.pause()
+        music = new Audio(link)
+        music.play()
+    }
+}
+
 async function main() {
     let songLinks = await songFetcherFromLocalDir("http://127.0.0.1:3000/assets/songs/")
     leftSongList_songAdder(".leftSongList", songLinks)
+
+    let array = document.querySelector(".leftSongList ul").getElementsByTagName("li")
+    
+    for (const element of array) {
+        element.addEventListener("click", () => {
+            let url = element.getElementsByTagName("div")[1].getAttribute("data-music-url")
+            playMusic(url);
+        })
+    }
+
 }
 
-main().then(r => {})
-
-// console.log(songLinkToText("https://github.com/Maus-313/Spotify-Clone/tree/5fc39f490f2e9dff1f110e941bbb73c0f60c24de/assets/songs"))
+main().then(r => { })
