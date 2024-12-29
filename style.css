@@ -398,7 +398,23 @@ button {}
     padding: 5px 5px;
 }
 
-.player .playButtons button{
+.player .bottom{
+    display: flex;
+    background-color: rgba(255, 0, 0, 0);
+    justify-content: space-evenly;
+}
+
+.player .bottom .leftInfoBox{
+    background-color: rgba(255, 0, 0, 0);
+    color: black;
+}
+
+.player .bottom .rightInfoBox{
+    background-color: rgba(255, 0, 0, 0);
+    color: black;
+}
+
+.player .bottom .playButtons button{
     padding: 5px;
 }
 

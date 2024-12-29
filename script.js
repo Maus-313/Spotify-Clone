@@ -21,6 +21,12 @@ async function songFetcherFromLocalDir(link) {
 
 }
 
+function rawDurationToProperDuration(music) {
+    let minutes = Math.floor(music.duration / 60);
+    let seconds = Math.floor(music.duration % 60);
+    return`${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+}
+
 function songLinkToText(link) {
 
     let tempArr = link.split('/').pop().split('.')[0].split("%20")
@@ -62,11 +68,14 @@ function playMusic(link, playButton) {
         music.play().then(() => {
             let progress = (music.currentTime / music.duration) * 100;
             console.log(progress);
+            document.querySelector(".rightInfoBox").innerHTML = rawDurationToProperDuration(music)
         });
     } else {
         music.pause()
         music = new Audio(link)
-        music.play()
+        music.play().then(() => {
+            document.querySelector(".rightInfoBox").innerHTML = rawDurationToProperDuration(music)
+        })
     }
     playButton.innerHTML = "Playing"
 }
@@ -122,6 +131,7 @@ async function main() {
         element.addEventListener("click", () => {
             let url = element.getElementsByTagName("div")[1].getAttribute("data-music-url")
             playMusic(url, buttonArray[1]);
+            document.querySelector(".leftInfoBox").innerHTML = songLinkToText(url)
         })
     }
 
