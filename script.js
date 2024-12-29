@@ -60,28 +60,28 @@ function playMusic(link, playButton) {
     if (music == undefined) {
         music = new Audio(link)
         music.play().then(() => {
-            let progress = (music.currentTime / music.duration) * 100;
+            // let progress = (music.currentTime / music.duration) * 100;
             // console.log(progress);
-            // playButton.innerHTML = "Playing"
         });
     } else {
         music.pause()
         music = new Audio(link)
-        music.play().then(() => {
-            // playButton.innerHTML = "Playing"
-        })
+        music.play()
     }
+    playButton.innerHTML = "Playing"
 }
 
-function controlMusic(music, command) {
+function controlMusic_updatePlayButton(music, command, playButton) {
     if (music == undefined) {
         alert("Please choose a music first!")
     } else {
         if (command == "play") {
             if (music.paused) {
                 music.play()
+                playButton.innerHTML = "Playing"
             } else {
                 music.pause()
+                playButton.innerHTML = "Paused"
             }
         } else if (command == "previous") {
 
@@ -101,8 +101,7 @@ function buttonActivityObserver(buttonArray) {
     buttonArray.forEach(element => {
         element.addEventListener("click", () => {
             console.log(`Trigger -> ${element.getAttribute("data-action-name")}`);
-            controlMusic(music, element.getAttribute("data-action-name"))
-            // updatePlayIcon(element);
+            controlMusic_updatePlayButton(music, element.getAttribute("data-action-name"), buttonArray[1])
         })
     });
 }
