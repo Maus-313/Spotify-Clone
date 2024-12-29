@@ -56,15 +56,55 @@ function leftSongList_songAdder(className, array) {
 
 let music
 
-function playMusic(link) {
-    if(music == undefined){
+function playMusic(link, playButton) {
+    if (music == undefined) {
         music = new Audio(link)
-        music.play();
-    }else{
+        music.play().then(() => {
+            let progress = (music.currentTime / music.duration) * 100;
+            // console.log(progress);
+            // playButton.innerHTML = "Playing"
+        });
+    } else {
         music.pause()
         music = new Audio(link)
-        music.play()
+        music.play().then(() => {
+            // playButton.innerHTML = "Playing"
+        })
     }
+}
+
+function controlMusic(music, command) {
+    if (music == undefined) {
+        alert("Please choose a music first!")
+    } else {
+        if (command == "play") {
+            if (music.paused) {
+                music.play()
+            } else {
+                music.pause()
+            }
+        } else if (command == "previous") {
+
+        }
+    }
+}
+
+function updatePlayIcon(button) {
+    if (music != undefined) {
+        button.innerHTML = "Paused"
+    } else if (music.paused) {
+        console.log(button.innerHTML);
+    }
+}
+
+function buttonActivityObserver(buttonArray) {
+    buttonArray.forEach(element => {
+        element.addEventListener("click", () => {
+            console.log(`Trigger -> ${element.getAttribute("data-action-name")}`);
+            controlMusic(music, element.getAttribute("data-action-name"))
+            // updatePlayIcon(element);
+        })
+    });
 }
 
 async function main() {
@@ -72,14 +112,17 @@ async function main() {
     leftSongList_songAdder(".leftSongList", songLinks)
 
     let array = document.querySelector(".leftSongList ul").getElementsByTagName("li")
-    
+    let buttonArray = document.querySelectorAll(".player .playButtons button")
+
     for (const element of array) {
         element.addEventListener("click", () => {
             let url = element.getElementsByTagName("div")[1].getAttribute("data-music-url")
-            playMusic(url);
+            playMusic(url, buttonArray[1]);
         })
     }
+    
+    buttonActivityObserver(buttonArray)
 
 }
 
-main().then(r => { })
+main()
