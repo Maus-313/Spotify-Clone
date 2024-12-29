@@ -60,8 +60,8 @@ function playMusic(link, playButton) {
     if (music == undefined) {
         music = new Audio(link)
         music.play().then(() => {
-            // let progress = (music.currentTime / music.duration) * 100;
-            // console.log(progress);
+            let progress = (music.currentTime / music.duration) * 100;
+            console.log(progress);
         });
     } else {
         music.pause()
@@ -79,9 +79,13 @@ function controlMusic_updatePlayButton(music, command, playButton) {
             if (music.paused) {
                 music.play()
                 playButton.innerHTML = "Playing"
+                let progress = (music.currentTime / music.duration) * 100;
+                console.log(progress);
             } else {
                 music.pause()
                 playButton.innerHTML = "Paused"
+                let progress = (music.currentTime / music.duration) * 100;
+                console.log(progress);
             }
         } else if (command == "previous") {
 
@@ -106,6 +110,7 @@ function buttonActivityObserver(buttonArray) {
     });
 }
 
+
 async function main() {
     let songLinks = await songFetcherFromLocalDir("http://127.0.0.1:3000/assets/songs/")
     leftSongList_songAdder(".leftSongList", songLinks)
@@ -119,7 +124,7 @@ async function main() {
             playMusic(url, buttonArray[1]);
         })
     }
-    
+
     buttonActivityObserver(buttonArray)
 
 }
