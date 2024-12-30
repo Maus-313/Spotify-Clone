@@ -354,7 +354,7 @@ button {}
 }
 
 .right .player {
-    background-color: rgb(31, 207, 0);
+    background-color: rgb(0, 0, 0);
     box-sizing: border-box;
     margin: 5px;
     padding: 10px;
@@ -383,7 +383,7 @@ button {}
     height: 10px;
     width: 10px;
     border-radius: 50px;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(0, 255, 0);
     position: absolute;
     left: 0%;
     transition: left 0.5s;
@@ -401,17 +401,20 @@ button {}
 .player .bottom{
     display: flex;
     background-color: rgba(255, 0, 0, 0);
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 
 .player .bottom .leftInfoBox{
     background-color: rgba(255, 0, 0, 0);
-    color: black;
+    color: rgb(0, 255, 0);
 }
 
 .player .bottom .rightInfoBox{
     background-color: rgba(255, 0, 0, 0);
-    color: black;
+    color: rgb(0, 255, 0);
+}
+.player .bottom .rightInfoBox span{
+    color: rgb(0, 255, 0);
 }
 
 .player .bottom .playButtons button{

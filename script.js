@@ -21,10 +21,10 @@ async function songFetcherFromLocalDir(link) {
 
 }
 
-function rawDurationToProperDuration(music) {
-    let minutes = Math.floor(music.duration / 60);
-    let seconds = Math.floor(music.duration % 60);
-    return`${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+function rawDurationToProperDuration(rawDuration) {
+    let minutes = Math.floor(rawDuration / 60);
+    let seconds = Math.floor(rawDuration % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
 }
 
 function songLinkToText(link) {
@@ -62,22 +62,31 @@ function leftSongList_songAdder(className, array) {
 
 let music
 
-function playMusic(link, playButton) {
+function playMusic_updateTimer(link, playButton) {
     if (music == undefined) {
         music = new Audio(link)
         music.play().then(() => {
             let progress = (music.currentTime / music.duration) * 100;
             console.log(progress);
-            document.querySelector(".rightInfoBox").innerHTML = rawDurationToProperDuration(music)
+            document.querySelector(".rightInfoBox span:last-child").innerHTML = rawDurationToProperDuration(music.duration)
         });
+
+        music.addEventListener("timeupdate", () => {
+            document.querySelector(".rightInfoBox span:first-child").innerHTML = rawDurationToProperDuration(music.currentTime)
+        })
     } else {
+        console.log('updating');
         music.pause()
         music = new Audio(link)
         music.play().then(() => {
-            document.querySelector(".rightInfoBox").innerHTML = rawDurationToProperDuration(music)
+            document.querySelector(".rightInfoBox span:last-child").innerHTML = rawDurationToProperDuration(music.duration)
+        })
+        music.addEventListener("timeupdate", () => {
+            document.querySelector(".rightInfoBox span:first-child").innerHTML = rawDurationToProperDuration(music.currentTime)
         })
     }
     playButton.innerHTML = "Playing"
+    
 }
 
 function controlMusic_updatePlayButton(music, command, playButton) {
@@ -88,25 +97,14 @@ function controlMusic_updatePlayButton(music, command, playButton) {
             if (music.paused) {
                 music.play()
                 playButton.innerHTML = "Playing"
-                let progress = (music.currentTime / music.duration) * 100;
-                console.log(progress);
+
             } else {
                 music.pause()
                 playButton.innerHTML = "Paused"
-                let progress = (music.currentTime / music.duration) * 100;
-                console.log(progress);
             }
         } else if (command == "previous") {
 
         }
-    }
-}
-
-function updatePlayIcon(button) {
-    if (music != undefined) {
-        button.innerHTML = "Paused"
-    } else if (music.paused) {
-        console.log(button.innerHTML);
     }
 }
 
@@ -124,13 +122,13 @@ async function main() {
     let songLinks = await songFetcherFromLocalDir("http://127.0.0.1:3000/assets/songs/")
     leftSongList_songAdder(".leftSongList", songLinks)
 
-    let array = document.querySelector(".leftSongList ul").getElementsByTagName("li")
+    let musicList = document.querySelector(".leftSongList ul").getElementsByTagName("li")
     let buttonArray = document.querySelectorAll(".player .playButtons button")
 
-    for (const element of array) {
+    for (const element of musicList) {
         element.addEventListener("click", () => {
             let url = element.getElementsByTagName("div")[1].getAttribute("data-music-url")
-            playMusic(url, buttonArray[1]);
+            playMusic_updateTimer(url, buttonArray[1]);
             document.querySelector(".leftInfoBox").innerHTML = songLinkToText(url)
         })
     }
