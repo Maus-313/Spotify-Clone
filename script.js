@@ -1,6 +1,3 @@
-
-console.log('"Starting the script"');
-
 async function songFetcherFromLocalDir(link) {
 
     let a = await fetch(link)
@@ -61,22 +58,21 @@ function leftSongList_songAdder(className, array) {
 }
 
 let music
+let songIdx = undefined
 
-function playMusic_updateTimer(link, playButton) {
+function playMusic_updateTimer(link) {
     if (music == undefined) {
         music = new Audio(link)
         music.play().then(() => {
             let progress = (music.currentTime / music.duration) * 100;
-            console.log(progress);
             document.querySelector(".rightInfoBox span:last-child").innerHTML = rawDurationToProperDuration(music.duration)
         });
 
         music.addEventListener("timeupdate", () => {
             document.querySelector(".rightInfoBox span:first-child").innerHTML = rawDurationToProperDuration(music.currentTime)
-            document.querySelector(".circle").style.left = `${((music.currentTime)/(music.duration))*100}%`
+            document.querySelector(".circle").style.left = `${((music.currentTime) / (music.duration)) * 100}%`
         })
     } else {
-        console.log('updating');
         document.querySelector(".circle").style.left = `0%`
         music.pause()
         music = new Audio(link)
@@ -85,28 +81,48 @@ function playMusic_updateTimer(link, playButton) {
         })
         music.addEventListener("timeupdate", () => {
             document.querySelector(".rightInfoBox span:first-child").innerHTML = rawDurationToProperDuration(music.currentTime)
-            document.querySelector(".circle").style.left = `${((music.currentTime)/(music.duration))*100}%`
+            document.querySelector(".circle").style.left = `${((music.currentTime) / (music.duration)) * 100}%`
         })
     }
-    playButton.innerHTML = "Playing"
-    
+    document.querySelectorAll(".player .playButtons button")[1].innerHTML = "Playing"
+
 }
 
-function controlMusic_updatePlayButton(music, command, playButton) {
+function controlMusic_updatePlayButton(music, command) {
+    let musicList = document.querySelector(".leftSongList ul").getElementsByTagName("li")
+    
     if (music == undefined) {
         alert("Please choose a music first!")
     } else {
         if (command == "play") {
             if (music.paused) {
                 music.play()
-                playButton.innerHTML = "Playing"
+                document.querySelectorAll(".player .playButtons button")[1].innerHTML = "Playing"
 
             } else {
                 music.pause()
-                playButton.innerHTML = "Paused"
+                document.querySelectorAll(".player .playButtons button")[1].innerHTML = "Paused"
             }
         } else if (command == "previous") {
+            songIdx--;
+            if (songIdx == -1) {
+                alert("You are at end of the Beginning of the playlist")
+                songIdx++;
+            } else {
+                let url = musicList[songIdx].getElementsByTagName("div")[1].getAttribute("data-music-url");
+                playMusic_updateTimer(url)
+            }
 
+        } else if (command == "next") {
+            songIdx++;
+            
+            if (songIdx == (musicList.length)) {
+                alert("You are at end of the End of the playlist")
+                songIdx--;
+            } else {
+                let url = musicList[songIdx].getElementsByTagName("div")[1].getAttribute("data-music-url");
+                playMusic_updateTimer(url)
+            }
         }
     }
 }
@@ -114,18 +130,17 @@ function controlMusic_updatePlayButton(music, command, playButton) {
 function buttonActivityObserver(buttonArray) {
     buttonArray.forEach(element => {
         element.addEventListener("click", () => {
-            console.log(`Trigger -> ${element.getAttribute("data-action-name")}`);
-            controlMusic_updatePlayButton(music, element.getAttribute("data-action-name"), buttonArray[1])
+            controlMusic_updatePlayButton(music, element.getAttribute("data-action-name"))
         })
     });
 }
 
 
-function seekBarActivityObserver(){
+function seekBarActivityObserver() {
     document.querySelector(".seekbar").addEventListener("click", (e) => {
-        let progress = (e.offsetX/e.target.getBoundingClientRect().width)*100
+        let progress = (e.offsetX / e.target.getBoundingClientRect().width) * 100
         document.querySelector(".circle").style.left = `${progress}%`
-        music.currentTime = music.duration * (progress/100);
+        music.currentTime = music.duration * (progress / 100);
     })
 }
 
@@ -136,18 +151,21 @@ async function main() {
     let musicList = document.querySelector(".leftSongList ul").getElementsByTagName("li")
     let buttonArray = document.querySelectorAll(".player .playButtons button")
 
-    for (const element of musicList) {
-        element.addEventListener("click", () => {
-            let url = element.getElementsByTagName("div")[1].getAttribute("data-music-url")
+
+    // Attaching event listner to all the songs in the left playlist!
+    for (let i = 0; i < musicList.length; i++) {
+        musicList[i].addEventListener("click", () => {
+            songIdx = i;
+            let url = musicList[i].getElementsByTagName("div")[1].getAttribute("data-music-url");
             playMusic_updateTimer(url, buttonArray[1]);
-            document.querySelector(".leftInfoBox").innerHTML = songLinkToText(url)
-        })
+            document.querySelector(".leftInfoBox").innerHTML = songLinkToText(url);
+        });
     }
 
     buttonActivityObserver(buttonArray)
     seekBarActivityObserver()
 
-    document.querySelector(".hamburger").addEventListener("click",() => {
+    document.querySelector(".hamburger").addEventListener("click", () => {
         document.querySelector("main .left").style.left = "0%";
     })
 
