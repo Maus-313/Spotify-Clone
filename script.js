@@ -73,9 +73,13 @@ function playMusic_updateTimer(link, playButton) {
 
         music.addEventListener("timeupdate", () => {
             document.querySelector(".rightInfoBox span:first-child").innerHTML = rawDurationToProperDuration(music.currentTime)
+            console.log(((music.currentTime)/(music.duration))*100);
+            
+            document.querySelector(".circle").style.left = `${((music.currentTime)/(music.duration))*100}%`
         })
     } else {
         console.log('updating');
+        document.querySelector(".circle").style.left = `0%`
         music.pause()
         music = new Audio(link)
         music.play().then(() => {
@@ -83,6 +87,7 @@ function playMusic_updateTimer(link, playButton) {
         })
         music.addEventListener("timeupdate", () => {
             document.querySelector(".rightInfoBox span:first-child").innerHTML = rawDurationToProperDuration(music.currentTime)
+            document.querySelector(".circle").style.left = `${((music.currentTime)/(music.duration))*100}%`
         })
     }
     playButton.innerHTML = "Playing"
