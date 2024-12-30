@@ -144,6 +144,14 @@ function seekBarActivityObserver() {
     })
 }
 
+function volumeControllerActivityObserver(){
+    document.getElementById("volumeControll").addEventListener("input",(e) => {
+        if(music != undefined){
+            music.volume = e.target.value/100;
+        }
+    } )
+}
+
 async function main() {
     let songLinks = await songFetcherFromLocalDir("http://127.0.0.1:3000/assets/songs/")
     leftSongList_songAdder(".leftSongList", songLinks)
@@ -164,6 +172,7 @@ async function main() {
 
     buttonActivityObserver(buttonArray)
     seekBarActivityObserver()
+    volumeControllerActivityObserver()
 
     document.querySelector(".hamburger").addEventListener("click", () => {
         document.querySelector("main .left").style.left = "0%";

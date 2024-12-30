@@ -412,6 +412,47 @@ button {}
     justify-self: center;
 }
 
+.player .bottom > div:last-child{
+    background-color: rgba(255, 0, 0, 0);
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+
+.volumeBox{
+    background-color: rgba(255, 0, 0, 0);
+    display: flex;
+}
+
+.volumeControllerContainer{
+    background-color: rgba(255, 0, 0, 0);
+    height: 10px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 20vw;
+}
+
+.volumeBar{
+    height: 5px;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    cursor: pointer;
+}
+
+.volumeCircle{
+    height: 10px;
+    width: 10px;
+    border-radius: 50px;
+    background-color: rgb(0, 255, 0);
+    position: absolute;
+    left: 0%;
+    transition: left 0.5s;
+    cursor: grab;
+}
+
+
 .player .bottom .rightInfoBox {
     background-color: rgba(255, 0, 0, 0);
     color: rgb(0, 255, 0);
