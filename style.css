@@ -175,6 +175,11 @@ button {}
     justify-content: space-between;
 }
 
+.leftSongList ul li:hover {
+    background-color: rgb(67, 67, 67);
+    transition: all 0.3s;
+}
+
 .leftSongList ul li .leftSongListItemsInfo {
     background-color: rgba(255, 0, 0, 0);
     display: flex;
