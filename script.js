@@ -73,8 +73,6 @@ function playMusic_updateTimer(link, playButton) {
 
         music.addEventListener("timeupdate", () => {
             document.querySelector(".rightInfoBox span:first-child").innerHTML = rawDurationToProperDuration(music.currentTime)
-            console.log(((music.currentTime)/(music.duration))*100);
-            
             document.querySelector(".circle").style.left = `${((music.currentTime)/(music.duration))*100}%`
         })
     } else {
@@ -123,6 +121,14 @@ function buttonActivityObserver(buttonArray) {
 }
 
 
+function seekBarActivityObserver(){
+    document.querySelector(".seekbar").addEventListener("click", (e) => {
+        let progress = (e.offsetX/e.target.getBoundingClientRect().width)*100
+        document.querySelector(".circle").style.left = `${progress}%`
+        music.currentTime = music.duration * (progress/100);
+    })
+}
+
 async function main() {
     let songLinks = await songFetcherFromLocalDir("http://127.0.0.1:3000/assets/songs/")
     leftSongList_songAdder(".leftSongList", songLinks)
@@ -139,7 +145,15 @@ async function main() {
     }
 
     buttonActivityObserver(buttonArray)
+    seekBarActivityObserver()
 
+    document.querySelector(".hamburger").addEventListener("click",() => {
+        document.querySelector("main .left").style.left = "0%";
+    })
+
+    document.querySelector(".left_drawer_backButton").addEventListener("click", () => {
+        document.querySelector("main .left").style.left = "-100%";
+    })
 }
 
 main()
