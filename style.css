@@ -295,6 +295,13 @@ button {}
     padding: 5px;
     display: flex;
     flex-direction: column;
+    border: 1px solid rgb(0, 255, 0);
+}
+
+.right .middle .middle .card:hover{
+    background-color: rgb(82, 82, 82);
+    position: relative;
+    top: 10px;
 }
 
 .right .middle .middle .card img {}
