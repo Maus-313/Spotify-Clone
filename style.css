@@ -539,7 +539,7 @@ button {}
 @media (max-width: 450px) {
 
     .left_drawer_backButton{
-        display: none;
+        display: block;
     }
 
     main{
