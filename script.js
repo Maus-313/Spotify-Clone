@@ -1,3 +1,6 @@
+let music
+let songIdx = undefined
+
 async function songFetcherFromLocalDir(link) {
 
     let a = await fetch(link)
@@ -56,9 +59,6 @@ function leftSongList_songAdder(className, array) {
 
     one.querySelector("ul").innerHTML = songUL
 }
-
-let music
-let songIdx = undefined
 
 function playMusic_updateTimer(link) {
     if (music == undefined) {
