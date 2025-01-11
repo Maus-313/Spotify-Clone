@@ -1,5 +1,6 @@
 let music
 let songIdx = undefined
+let folder = undefined
 
 async function songFetcherFromLocalDir(link) {
 
@@ -163,8 +164,19 @@ function leftPlaylistActivityObserver(musicList, buttonArray){
     }
 }
 
+function mobileViewHandler(){
+    document.querySelector(".hamburger").addEventListener("click", () => {
+        document.querySelector("main .left").style.left = "0%";
+    })
+
+    document.querySelector(".left_drawer_backButton").addEventListener("click", () => {
+        document.querySelector("main .left").style.left = "-100%";
+    })
+}
+
 async function main() {
-    let songLinks = await songFetcherFromLocalDir("http://127.0.0.1:3000/assets/songs/")
+    folder = "songs"
+    let songLinks = await songFetcherFromLocalDir(`http://127.0.0.1:3000/assets/${folder}/`)
     leftSongList_songAdder(".leftSongList", songLinks)
 
     let musicList = document.querySelector(".leftSongList ul").getElementsByTagName("li")
@@ -178,13 +190,7 @@ async function main() {
     seekBarActivityObserver()
     volumeControllerActivityObserver()
 
-    document.querySelector(".hamburger").addEventListener("click", () => {
-        document.querySelector("main .left").style.left = "0%";
-    })
-
-    document.querySelector(".left_drawer_backButton").addEventListener("click", () => {
-        document.querySelector("main .left").style.left = "-100%";
-    })
+    mobileViewHandler()
 }
 
 main()
