@@ -112,6 +112,7 @@ function controlMusic_updatePlayButton(music, command) {
             } else {
                 let url = musicList[songIdx].getElementsByTagName("div")[1].getAttribute("data-music-url");
                 playMusic_updateTimer(url)
+                document.querySelector(".leftInfoBox").innerHTML = songLinkToText(url);
             }
 
         } else if (command == "next") {
@@ -123,6 +124,7 @@ function controlMusic_updatePlayButton(music, command) {
             } else {
                 let url = musicList[songIdx].getElementsByTagName("div")[1].getAttribute("data-music-url");
                 playMusic_updateTimer(url)
+                document.querySelector(".leftInfoBox").innerHTML = songLinkToText(url);
             }
         }
     }
