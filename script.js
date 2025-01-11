@@ -152,6 +152,17 @@ function volumeControllerActivityObserver(){
     } )
 }
 
+function leftPlaylistActivityObserver(musicList, buttonArray){
+    for (let i = 0; i < musicList.length; i++) {
+        musicList[i].addEventListener("click", () => {
+            songIdx = i;
+            let url = musicList[i].getElementsByTagName("div")[1].getAttribute("data-music-url");
+            playMusic_updateTimer(url, buttonArray[1]);
+            document.querySelector(".leftInfoBox").innerHTML = songLinkToText(url);
+        });
+    }
+}
+
 async function main() {
     let songLinks = await songFetcherFromLocalDir("http://127.0.0.1:3000/assets/songs/")
     leftSongList_songAdder(".leftSongList", songLinks)
@@ -161,14 +172,7 @@ async function main() {
 
 
     // Attaching event listner to all the songs in the left playlist!
-    for (let i = 0; i < musicList.length; i++) {
-        musicList[i].addEventListener("click", () => {
-            songIdx = i;
-            let url = musicList[i].getElementsByTagName("div")[1].getAttribute("data-music-url");
-            playMusic_updateTimer(url, buttonArray[1]);
-            document.querySelector(".leftInfoBox").innerHTML = songLinkToText(url);
-        });
-    }
+    leftPlaylistActivityObserver(musicList,buttonArray)
 
     buttonActivityObserver(buttonArray)
     seekBarActivityObserver()
