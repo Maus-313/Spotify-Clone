@@ -1,3 +1,7 @@
+let music
+let songIdx = undefined
+let folder = undefined
+
 async function songFetcherFromLocalDir(link) {
 
     let a = await fetch(link)
@@ -57,9 +61,6 @@ function leftSongList_songAdder(className, array) {
     one.querySelector("ul").innerHTML = songUL
 }
 
-let music
-let songIdx = undefined
-
 function playMusic_updateTimer(link) {
     if (music == undefined) {
         music = new Audio(link)
@@ -111,6 +112,7 @@ function controlMusic_updatePlayButton(music, command) {
             } else {
                 let url = musicList[songIdx].getElementsByTagName("div")[1].getAttribute("data-music-url");
                 playMusic_updateTimer(url)
+                document.querySelector(".leftInfoBox").innerHTML = songLinkToText(url);
             }
 
         } else if (command == "next") {
@@ -122,6 +124,7 @@ function controlMusic_updatePlayButton(music, command) {
             } else {
                 let url = musicList[songIdx].getElementsByTagName("div")[1].getAttribute("data-music-url");
                 playMusic_updateTimer(url)
+                document.querySelector(".leftInfoBox").innerHTML = songLinkToText(url);
             }
         }
     }
@@ -152,15 +155,7 @@ function volumeControllerActivityObserver(){
     } )
 }
 
-async function main() {
-    let songLinks = await songFetcherFromLocalDir("http://127.0.0.1:3000/assets/songs/")
-    leftSongList_songAdder(".leftSongList", songLinks)
-
-    let musicList = document.querySelector(".leftSongList ul").getElementsByTagName("li")
-    let buttonArray = document.querySelectorAll(".player .playButtons button")
-
-
-    // Attaching event listner to all the songs in the left playlist!
+function leftPlaylistActivityObserver(musicList, buttonArray){
     for (let i = 0; i < musicList.length; i++) {
         musicList[i].addEventListener("click", () => {
             songIdx = i;
@@ -169,11 +164,9 @@ async function main() {
             document.querySelector(".leftInfoBox").innerHTML = songLinkToText(url);
         });
     }
+}
 
-    buttonActivityObserver(buttonArray)
-    seekBarActivityObserver()
-    volumeControllerActivityObserver()
-
+function mobileViewHandler(){
     document.querySelector(".hamburger").addEventListener("click", () => {
         document.querySelector("main .left").style.left = "0%";
     })
@@ -181,6 +174,25 @@ async function main() {
     document.querySelector(".left_drawer_backButton").addEventListener("click", () => {
         document.querySelector("main .left").style.left = "-100%";
     })
+}
+
+async function main() {
+    folder = "songs"
+    let songLinks = await songFetcherFromLocalDir(`http://127.0.0.1:3000/assets/${folder}/`)
+    leftSongList_songAdder(".leftSongList", songLinks)
+
+    let musicList = document.querySelector(".leftSongList ul").getElementsByTagName("li")
+    let buttonArray = document.querySelectorAll(".player .playButtons button")
+
+
+    // Attaching event listner to all the songs in the left playlist!
+    leftPlaylistActivityObserver(musicList,buttonArray)
+
+    buttonActivityObserver(buttonArray)
+    seekBarActivityObserver()
+    volumeControllerActivityObserver()
+
+    mobileViewHandler()
 }
 
 main()
