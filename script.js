@@ -178,7 +178,7 @@ function mobileViewHandler(){
 
 async function main() {
     folder = "songs"
-    let songLinks = await songFetcherFromLocalDir(`http://127.0.0.1:3000/assets/${folder}/`)
+    let songLinks = await songFetcherFromLocalDir(`./assets/${folder}/`)
     leftSongList_songAdder(".leftSongList", songLinks)
 
     let musicList = document.querySelector(".leftSongList ul").getElementsByTagName("li")
