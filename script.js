@@ -1,6 +1,21 @@
 let music
 let songIdx = undefined
 let folder = undefined
+// Global flag to enable/disable middleware
+let useMiddleware = true;
+
+// Middleware function to modify the links
+function linkMiddleware(originalLink) {
+    if (!useMiddleware) {
+        return originalLink; // If middleware is disabled, return original link
+    }
+
+    // Extract only the file name part
+    let filename = originalLink.substring(originalLink.lastIndexOf("/") + 1);
+
+    // Construct the new link
+    return `http://56.228.11.63:8081/assets/songs/${filename}`;
+}
 
 async function songFetcherFromLocalDir(link) {
 
@@ -12,10 +27,12 @@ async function songFetcherFromLocalDir(link) {
 
     let as = tempDiv.getElementsByTagName("a")
     let links = []
+
     for (let index = 0; index < as.length; index++) {
         const element = as[index].href;
         if (element.endsWith(".m4a") || element.endsWith(".mp3") || element.endsWith(".wav") || element.endsWith(".ogg")) {
-            links.push(element)
+            let modifiedLink = linkMiddleware(element); // <-- Apply middleware here
+            links.push(modifiedLink);
         }
     }
     return links
@@ -177,8 +194,7 @@ function mobileViewHandler(){
 }
 
 async function main() {
-    folder = "songs"
-    let songLinks = await songFetcherFromLocalDir(`./assets/${folder}/`)
+    let songLinks = await songFetcherFromLocalDir(`http://56.228.11.63:8081/assets/songs/`)
     leftSongList_songAdder(".leftSongList", songLinks)
 
     let musicList = document.querySelector(".leftSongList ul").getElementsByTagName("li")
