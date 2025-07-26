@@ -1,6 +1,6 @@
-## Spotify-Clone - Under Development (2023 Version)
+## Spotify Clone - In Development (2023 Version)
 
-This project, hosted on AWS EC2, represents an early version of Spotify from approximately 2023. Please note that it is still under development.
+This project, hosted on AWS EC2, is an educational recreation of Spotify as it appeared around 2023. Please note that the application is still under active development, particularly the backend components. For any copyright concerns, please contact me directly and I will promptly address your request.
 
 ### Visual Representation
 
